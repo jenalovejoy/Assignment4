@@ -6,8 +6,6 @@
 //  Copyright © 2018 Jena Lovejoy. All rights reserved.
 //
 
-// TO DO:
-// Change bool search() to &T search()
 
 #ifndef BinarySearchTree_hpp
 #define BinarySearchTree_hpp

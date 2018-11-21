@@ -20,8 +20,7 @@ protected:
     
 public:
     Barcode(){
-        UPCCode = "";
-        info = "";
+        Barcode("", "");
     }
     
     Barcode(const string &_UPC, const string &_info){

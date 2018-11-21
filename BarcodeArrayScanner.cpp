@@ -37,14 +37,14 @@ int buildArray(Barcode *codeArray[], const char * fileName){ // string fileName
     return index - 1;
 }
 
-bool search(Barcode *codeArray, int size, Barcode code){
+Barcode& search(Barcode *codeArray, int size, Barcode &code){
     
     for (int i = 0; i <= size; i++){
         if (codeArray[i] == code) {
-            return true;
+            return codeArray[i];
         }
     }
-    return false;
+    return code;
 }
 
 void runExamples(Barcode *codeArray, int size, const string &code){

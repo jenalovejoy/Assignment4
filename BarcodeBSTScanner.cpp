@@ -45,31 +45,26 @@ void runExamples(BinarySearchTree<Barcode> &codeTree, const string &code){
     finalTime = clock() - start;
     
     cout << result << endl;
+    
     cout << "This took " << (double) finalTime * timeScale << " milliseconds." << endl;
     
 }
 
-
 int main(int argc, const char * argv[]) {
     
     const char * fileName = argv[1];
-    
-    // string fileName = "/Users/jena/Desktop/CorpusSmall.txt";
-    // string fileName = "/Users/jena/Desktop/CorpusFull.txt";
-    
+
     BinarySearchTree<Barcode> codeTree;
     buildTree(codeTree, fileName);
-    
-    cout << "tree built" << endl;
-    
-    cout << "height = " << codeTree.height() << endl;
-    
+    /*
     runExamples(codeTree, "799000052"); // 16 oz Trader Joe's Raw Almonds
     runExamples(codeTree, "300000663"); // Trader Joe's
     runExamples(codeTree, "71000"); // 6 OZ Trader Joe's Just Mango Slices
     runExamples(codeTree, "459136"); // 1.8 OZ 5G CURRY POWDER -TRADER JOE'S
     runExamples(codeTree, "41570059012"); // Blue Diamond Almonds - Bold Salt 'n Vinegar Flavor
     runExamples(codeTree, "60410047613"); // Tostitos Hint Of Lime
+    */
+    runExamples(codeTree, "8934746015320");
     
     
 }
