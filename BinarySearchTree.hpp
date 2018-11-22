@@ -1,11 +1,6 @@
-//
-//  BinarySearchTree.hpp
-//  ThisAssignment4
-//
-//  Created by Jena Lovejoy on 11/15/18.
-//  Copyright © 2018 Jena Lovejoy. All rights reserved.
-//
-
+//  CS 300 Assignment 4 due 11/21
+//  Jena Lovejoy
+//  BinarySearchTree.hpp creates a BST and provides functionality like search, delete, and insert
 
 #ifndef BinarySearchTree_hpp
 #define BinarySearchTree_hpp
@@ -21,10 +16,12 @@ struct node {
     
 };
 
+
 template <class T>
 class BinarySearchTree {
 private:
     node<T> *root;
+    
     void insert(node<T> *&p, T &item){
         
         if (p == NULL){
@@ -64,8 +61,10 @@ private:
     T& search(node<T> *p, T &item){
         if (p == NULL){
             return item;
+            
         } else if (p->data == item){
             return p->data;
+            
         } else {
             if (p->data > item){
                 return search(p->left, item);
@@ -128,9 +127,8 @@ private:
         }
     }
     
-    // EDIT THIS
+    //
     void deleteNode(node<T>*& p, T& item){
-        // not present
         if (p == NULL){
             return;
         }

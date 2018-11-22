@@ -1,10 +1,6 @@
-//
-//  Barcode.hpp
-//  ThisAssignment4
-//
-//  Created by Jena Lovejoy on 11/17/18.
-//  Copyright © 2018 Jena Lovejoy. All rights reserved.
-//
+//  CS 300 Assignment 4 due 11/21
+//  Jena Lovejoy
+//  Barcode.hpp represents an inidividual unit of a UPC code and its description
 
 #ifndef Barcode_hpp
 #define Barcode_hpp
@@ -38,7 +34,6 @@ public:
     Barcode& operator=(Barcode &other){
         UPCCode = other.UPCCode;
         info = other.info;
-        
         return *this;
     }
     

@@ -1,4 +1,4 @@
-//  CS 300 Assignment 4 due 11/20
+//  CS 300 Assignment 4 due 11/21
 //  Jena Lovejoy
 //  BarcodeArrayScanner.cpp builds an array of Barcodes, given a text file,
 //  and then performs search on them and shows the speed of the search
@@ -10,10 +10,11 @@
 #include <time.h>
 using namespace std;
 
-const double timeScale = 1000.0 / CLOCKS_PER_SEC; // in milliseconds
+// NOTE: const currently commented out as only one main() can run at a time
+// const double timeScale = 1000.0 / CLOCKS_PER_SEC; // translates to milliseconds
 
-// returns capacity
-int buildArray(Barcode *codeArray[], const char * fileName){ // string fileName
+// Parses the file, then builds an array of Barcodes
+int buildArray(Barcode *codeArray, const char * fileName){ // string fileName
     
     ifstream fileStream;
     fileStream.open(fileName);
@@ -30,13 +31,14 @@ int buildArray(Barcode *codeArray[], const char * fileName){ // string fileName
         
         // Once info is obtained -> build
         Barcode *newBarcode = new Barcode(code, info);
-        codeArray[index] = newBarcode;
+        codeArray[index] = *newBarcode;
         index++;
     }
     
     return index - 1;
 }
 
+// Given a dummy Barcode, returns the full Barcode if found, and the dummy if not
 Barcode& search(Barcode *codeArray, int size, Barcode &code){
     
     for (int i = 0; i <= size; i++){
@@ -46,34 +48,48 @@ Barcode& search(Barcode *codeArray, int size, Barcode &code){
     }
     return code;
 }
-
-void runExamples(Barcode *codeArray, int size, const string &code){
-    
-    Barcode searchCode(code, "");
-    clock_t start;
-    clock_t finalTime;
-    
-    start = clock();
-    search(codeArray, size, searchCode);
-    finalTime = clock() - start;
-    
-    cout << "This took " << (double) finalTime * timeScale << " milliseconds." << endl;
-}
 /*
+ // Runs tests and calculates the time required for searches within this tree
 int main(int argc, const char * argv[]) {
  
     const char * fileName = argv[1];
     Barcode *codeArray = new Barcode[1050000];
   
-    int size = buildArray(&codeArray, fileName);
-
-    runExamples(codeArray, size, "799000052"); // 16 oz Trader Joe's Raw Almonds
-    runExamples(codeArray, size, "300000663"); // Trader Joe's
-    runExamples(codeArray, size, "71000"); // 6 OZ Trader Joe's Just Mango Slices
-    runExamples(codeArray, size, "459136"); // 1.8 OZ 5G CURRY POWDER -TRADER JOE'S
-    runExamples(codeArray, size, "41570059012"); // Blue Diamond Almonds - Bold Salt 'n Vinegar Flavor
-    runExamples(codeArray, size, "60410047613"); // Tostitos Hint Of Lime
+    int size = buildArray(codeArray, fileName);
+ 
+    string exampleCodes[] = {"8717644525098", "71000", "459136", "41570059012", "60410047613", "00000", "725177540363"};
+    // Item numbers 680, 76407, 660896, 67170, 1035244, non-existant, and 1
+    int iterations = 100;
+    int numExamples = 7;
+    clock_t timeSum = 0;
+ 
+    // Outside loop tests the example code cases 100 times, then finds the average length of the searches performed
+    // Inside success cout statements kept as an additional option in testing
+    for (int i = 0; i < iterations; i++){
+ 
+        for (string code : exampleCodes){
+            Barcode *searchCode = new Barcode(code, "");
+            clock_t start;
+            clock_t finalTime;
+            
+            start = clock();
+            Barcode result(search(codeArray, size, *searchCode));
+            finalTime = clock() - start;
+            
+            if (searchCode != &result){
+              //  cout << "Item found: ";
+            } else {
+                //cout << "Item not found: ";
+            }
+            timeSum += finalTime;
+        }
+    }
+    
+    double average = ((double) timeSum / (numExamples * iterations)) * timeScale;
+    
+    cout << "average search time: " << average << " milliseconds." << endl;
    
 }
+
 
 */
