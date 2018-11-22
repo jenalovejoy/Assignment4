@@ -14,7 +14,7 @@ using namespace std;
 // const double timeScale = 1000.0 / CLOCKS_PER_SEC; // translates to milliseconds
 
 // Parses the file, then builds an array of Barcodes
-int buildArray(Barcode *codeArray, const char * fileName){ // string fileName
+int buildArray(Barcode *codeArray, const char * fileName){
     
     ifstream fileStream;
     fileStream.open(fileName);
@@ -76,20 +76,21 @@ int main(int argc, const char * argv[]) {
             Barcode result(search(codeArray, size, *searchCode));
             finalTime = clock() - start;
             
-            if (searchCode != &result){
-              //  cout << "Item found: ";
+            // Without the iterations * numExamples number of searches,
+            // with a smaller set information can be displayed with this
+            if (searchCode != result){
+                // cout << "Item found: \n" << *result;
             } else {
-                //cout << "Item not found: ";
+                // cout << "Item not found: ";
             }
+            // cout << "search took: " << (double) finalTime * timeScale << " milliseconds" << endl;
+
             timeSum += finalTime;
         }
     }
-    
+ 
     double average = ((double) timeSum / (numExamples * iterations)) * timeScale;
-    
     cout << "average search time: " << average << " milliseconds." << endl;
    
 }
-
-
 */

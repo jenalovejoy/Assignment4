@@ -17,7 +17,6 @@ const double timeScale = 1000.0 / CLOCKS_PER_SEC; // translates to milliseconds
 void buildTree(BinarySearchTree<Barcode> &codeTree, string fileName){
     
     ifstream fileStream;
-    // stringstream lineStream;
     fileStream.open(fileName);
     string inputString;
     string code;
@@ -64,17 +63,21 @@ int main(int argc, const char * argv[]) {
             Barcode *result(&codeTree.search(*searchCode));
             finalTime = clock() - start;
             
+            // Without the iterations * numExamples number of searches,
+            // with a smaller set information can be displayed with this
+            
             if (searchCode != result){
                 // cout << "Item found: \n" << *result;
             } else {
                 // cout << "Item not found: ";
             }
+            // cout << "search took: " << (double) finalTime * timeScale << " milliseconds" << endl;
+            
             timeSum += finalTime;
         }
-   }
+    }
         
         double average = ((double) timeSum / (numExamples * iterations)) * timeScale;
-        
         cout << "average search time: " << average << " milliseconds." << endl;
 }
 

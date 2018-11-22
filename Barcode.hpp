@@ -63,7 +63,6 @@ public:
     friend bool operator<=(const Barcode &A, const Barcode &B){
         return (A.UPCCode).compare(B.UPCCode) <= 0;
     }
-    
 };
 
 #endif /* Barcode_hpp */

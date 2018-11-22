@@ -16,7 +16,6 @@ struct node {
     
 };
 
-
 template <class T>
 class BinarySearchTree {
 private:
@@ -127,7 +126,6 @@ private:
         }
     }
     
-    //
     void deleteNode(node<T>*& p, T& item){
         if (p == NULL){
             return;
@@ -136,29 +134,22 @@ private:
             deleteNode(p->left, item);
         } else if (item > p->data){
             deleteNode(p->right, item);
-        } else { // correct node ->found
-            // Case 3: deleting a node with two children
-            //   Two cases: find max of left subtree or min of right subtree
-            //   Copy that value up to the root
-            //   Recursive call to delete that copied value, then follow that pattern down
+        } else {
             if (p->right != NULL && p->left != NULL){
                 T maxNode = findMax(p->left, item);
                 p->data = maxNode;
                 deleteNode(p->left, maxNode);
-            } else { // either leaf node or node with one child
-                node<T> *q = p; // saves the node that's deleted
-                // Case 2: deleting a node with only one child
-                //   Connect the node above with the child node
-                if (p->left != NULL){ // a node with only one left child
+            } else {
+                node<T> *q = p;
+                if (p->left != NULL){
                     p = p->left;
                 } else if (p->right != NULL){
                     p = p->right;
                 } else {
-                    // Case 1: deleting a leaf node
-                    //   Make the node->next above null
+
                     p = NULL;
                 }
-                delete q; // actually delete the node
+                delete q; 
             }
         }
     }
